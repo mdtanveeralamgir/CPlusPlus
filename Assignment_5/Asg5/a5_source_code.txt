@@ -1,0 +1,259 @@
+Nacho, Bracco Italiano, 4, male
+Toby, Chihuahua, 2, Male
+Abby, Bull Terrier, 8, Female
+Nacho, Coton de Tulear, 3, male
+Coco, German Shepherd Dog, 13, Female
+Abby, Flat-Coated Retriever, 1, female
+Raven, Bull Terrier, 12, Male
+Piper, Stabyhoun, 9, male
+--------------------------------------
+class Dog {
+    std::string name;  std::string breed;  std::string age;  std::string gender;
+public:
+     Dog() = default; Dog(const Dog& ) = default; Dog& operator=(const Dog& ) = default;                                                       
+    ~Dog() = default; Dog(      Dog&&) = default; Dog& operator=(      Dog&&) = default;
+
+    Dog(std::string n, std::string b, std::string a, std::string g) :
+               name(n), breed(b), age(a), gender(g) { }
+    friend std::ostream &operator<<(std::ostream &, const Dog&);
+    friend std::istream &operator>>(std::istream &, Dog &);
+    // getter and setter member functions ..., such as
+    std::string getBreed() const {return breed;}
+};
+using DogMapDefault = std::multimap<std::string, Dog>;
+std::ostream &operator<<(std::ostream &, const DogMapDefault&);
+string trim(const string & str);
+--------------------------------------
+// Dog.cpp
+// ...
+#include "Dog.h"
+std::ostream &operator<<(std::ostream &sout, const Dog &dog) {
+    sout << dog.name << ", " << dog.breed << ", " << dog.age << ", " << dog.gender;
+    return sout;
+}
+std::istream &operator>>(std::istream &sin, Dog &dog) {
+// your task: validate input. (you may use std::regex but are not required to)
+// If invalid, throw std::runtime_error("Invalid input line "); // trim() removes
+   std::getline(sin, dog.name, ',');  d.name   = trim(d.name);  // leading      
+   std::getline(sin, dog.breed, ','); d.breed  = trim(d.breed); // and
+   std::getline(sin, dog.age, ',');	  d.age    = trim(d.age);   // trailing
+   std::getline(sin, dog.gender); 	  d.gender = trim(d.gender);// whitespace
+   return sin;                                                  // of its argument
+}
+std::ostream &operator<<(std::ostream &sout, const DogMapDefault & dogmap) {
+//    for (const auto & dog : dogmap) { // C++14
+//        std::cout << std::setw(25) << dog.first << " --> " << dog.second << std::endl;
+//    }
+    for (const auto & [breed, dog] : dogmap) { // C++17
+        std::cout << std::setw(25) << breed << " --> " << dog << std::endl;
+    }
+    return sout;
+}
+--------------------------------------
+void load_csvFile_Normal_Loop(DogMapDefault& dog_map, std::string filename) {
+   std::ifstream input_file_stream(filename); // Create an input file stream
+   if (!input_file_stream.is_open()) {        // Check that the file is open
+      cout << "Could not open file " + filename << endl;
+      throw std::runtime_error("Could not open file " + filename);
+   }
+   std::string line;
+   while (std::getline(input_file_stream, line)) {        // read a line
+      std::stringstream my_line_stream(line); // turn the line into an input stream
+      Dog dog{};
+      my_line_stream >> dog;                  // initialize dog using Dog's operator>>
+      dog_map.emplace(dog.getBreed(), dog);   // insert dog into dog_map
+   }
+   input_file_stream.close(); // Close file
+}
+
+--------------------------------------
+int main() {
+   DogMapDefault dogMap;
+   load_csvFile_Normal_Loop(dogMap, "C:\\Users\\msi\\CPP\\Dogs\\dogDB.csv");
+   cout << dogMap << endl;
+   return 0;
+}
+--------------------------------------
+//Task 2
+int main()
+{
+   DogMapDefault dogMap;
+   load_csvFile_For_Each(dogMap, "C:\\Users\\msi\\CPP\\Dogs\\dogDB.csv");
+   cout << dogMap << endl;
+   return 0;
+}
+--------------------------------------
+//Task 3
+int main()
+{
+   DogMapDefault dogMap;
+   load_csvFile_Transform(dogMap, "C:\\Users\\msi\\CPP\\Dogs\\dogDB.csv");
+   cout << dogMap << endl;
+   return 0;
+}
+--------------------------------------
+// Task 5
+DogMapDefault findBreedRange(DogMapDefault &source, const std::string &key_breed)
+{
+// ...
+}
+--------------------------------------
+// Task 5
+int main()
+{
+      DogMapDefault dog_map;
+      load_csvFile_Normal_Loop(dog_map, "C:\\Users\\msi\\CPP\\Dogs\\dogDB2.csv");
+
+      DogMapDefault breedRangeMap1 = findBreedRange(dog_map, std::string("Greyhound"));
+      cout << breedRangeMap1 << "----------" << endl;
+
+      DogMapDefault breedRangeMap2 = findBreedRange(dog_map, std::string("Lakeland Terrier"));
+      cout << breedRangeMap2 << "----------" << endl;
+
+      DogMapDefault breedRangeMap3 = findBreedRange(dog_map, std::string("Pug"));
+      cout << breedRangeMap3 << "----------" << endl;
+
+      DogMapDefault breedRangeMap4 = findBreedRange(dog_map, std::string("Xyz"));
+      cout << breedRangeMap4 << "----------" << endl;
+
+      return 0;
+}
+--------------------------------------
+Tilly, Greyhound, 8, female
+Cubby, Pug, 3, Female
+Toby, Pug, 5, male
+Lacey, Greyhound, 5, Female
+Boris, Great Dane, 3, male
+Charlie, Greyhound, 5, Male
+Meatball, Great Dane, 1, Male
+Roxy, Greyhound, 10, female
+Patch, Pug, 6, male
+Izzy, Greyhound, 5, Male
+Hera, Pug, 11, female
+Jasper, Greyhound, 13, male
+Bella, Great Dane, 11, female
+Ollie, Lakeland Terrier, 1, Female
+--------------------------------------
+void test_is_palindrome()
+{
+   std::string str_i = std::string("was it a car or A Cat I saW?");
+   std::string str_u = std::string("was it A Car or a cat U saW?");
+   cout << "the phrase \"" + str_i + "\" is " +
+      (is_palindrome(str_i) ? "" : "not ") + "a palindrome\n";
+   cout << "the phrase \"" + str_u + "\" is " +
+      (is_palindrome(str_u) ? "" : "not ") + "a palindrome\n";
+}
+--------------------------------------
+template <class Iterator>                   // template header
+std::pair<Iterator,bool>                    // function template return type;
+                                            // to return more than two values
+                                            // use std::tuple
+second_max(Iterator start, Iterator finish) // function signature
+{
+   
+// your code
+}
+
+void test_second_max(std::vector<int> vec)
+{
+   // note: auto in the following statement is deduced as
+   // std::pair<std::vector<int>::iterator, bool>
+   auto retval = second_max(vec.begin(), vec.end());
+
+   if (retval.second)
+   {
+      cout << "The second largest element in vec is " 
+           << *retval.first << endl;
+   }
+   else
+   {
+      if (retval.first == vec.end())
+         cout << "List empty, no elements\n";
+      else
+         cout << "Container's elements are all equal to " 
+              << *retval.first << endl;
+   }
+}
+
+--------------------------------------
+int testCountStringsLambda (const std::vector<std::string>& vec, int n);
+int testCountStringsFreeFun(const std::vector<std::string>& vec, int n);
+int testCountStringsFunctor(const std::vector<std::string>& vec, int n);
+--------------------------------------
+void multisetUsingDefaultComparator()
+{
+   std::multiset<std::string> strSet; // an empty set
+
+   // a set that uses the default std::less<int> to sort the set elements
+   std::vector<std::string> vec {"C", "BB", "A", "CC", "A", "B", 
+                                 "BB", "A", "D", "CC", "DDD", "AAA" };
+
+   // copy the vector elements to our set. 
+   // We  must use a general (as oppsed to a front or back) inserter.
+   // (set does not have push_front or push_back members,
+   // so we can't use a front or back inserter)
+
+   std::copy(vec.begin(), vec.end(),                // source start and finish
+            std::inserter(strSet, strSet.begin())); // destination start with
+                                                    // a general inserter
+
+   // create an ostream_iterator for writing to cout, 
+   // using a space " " as a separator
+   std::ostream_iterator<std::string> out(cout, " ");
+
+   // output the set elements to cout separating them with a space
+   std::copy(strSet.begin(), strSet.end(), out); 
+}
+
+--------------------------------------
+// Test Driver Code
+// test_driver_4567.cpp
+// To facilitate marking, Please: 
+// include appropriate header files
+// include prototypes of all functions called in this unit
+// include the implementation of all the functions in this file;
+// include other types, functors, or function facilitators of your choice in this file
+int main()
+{
+   // Task 4:
+   test_is_palindrome();
+   cout << "\n";
+
+   // Task 5:
+   std::vector<int> v1{ 1 }; // one element
+   test_second_max(v1);
+
+   std::vector<int> v2{ 1, 1 }; // all elements equal
+   test_second_max(v2);
+
+   std::vector<int> v3{ 1, 1, 3, 3, 7, 7 }; // at least with two distict elements
+   test_second_max(v3);
+   cout << "\n";
+
+   // problem 6:
+   std::vector<std::string> vecstr
+   { "count_if", "Returns", "the", "number", "of", "elements", "in", "the",
+      "range", "[first", "last)", "for", "which", "pred", "is", "true."
+   };
+   cout << testCountStringsLambda(vecstr, 5) << endl;
+   cout << testCountStringsFreeFun(vecstr, 5) << endl;
+   cout << testCountStringsFunctor(vecstr, 5) << endl;
+   cout << "\n";
+
+   // problem 7:
+   multisetUsingMyComparator();
+   cout << "\n";
+
+   return 0;
+}
+
+--------------------------------------
+
+--------------------------------------
+
+--------------------------------------
+
+--------------------------------------
+
+--------------------------------------
+
