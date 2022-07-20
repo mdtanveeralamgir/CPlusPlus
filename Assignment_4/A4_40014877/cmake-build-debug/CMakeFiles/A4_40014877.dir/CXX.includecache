@@ -1,0 +1,70 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/AcuteTriangle.h
+Triangle.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Triangle.h
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Rectangle.h
+Shape.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Shape.h
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Rhombus.h
+Shape.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Shape.h
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/RightTriangle.h
+Triangle.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Triangle.h
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Shape.h
+string
+-
+iostream
+-
+vector
+-
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/SlotMachine.cpp
+SlotMachine.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/SlotMachine.h
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/SlotMachine.h
+iostream
+-
+memory
+-
+array
+-
+string
+-
+sstream
+-
+stdlib.h
+-
+time.h
+-
+cmath
+-
+Shape.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Shape.h
+Rectangle.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Rectangle.h
+Rhombus.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Rhombus.h
+RightTriangle.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/RightTriangle.h
+AcuteTriangle.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/AcuteTriangle.h
+SlotMachine.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/SlotMachine.h
+
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Triangle.h
+Shape.h
+/Users/Opel/Programming/Drive Programming/C++/A4_40014877/Shape.h
+
