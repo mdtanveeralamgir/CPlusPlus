@@ -1,0 +1,16 @@
+aa
+bb
+xxx
+yyy
+zzz
+cc
+int f()
+ {
+	return 123;
+ }
+dd
+int main()
+ {
+	return 0;
+ }
+ee

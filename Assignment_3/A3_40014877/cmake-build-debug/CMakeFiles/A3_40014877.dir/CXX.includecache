@@ -1,0 +1,52 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/LineManager.cpp
+LineManager.h
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/LineManager.h
+iostream
+-
+cstdlib
+-
+fstream
+-
+
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/LineManager.h
+Menu.h
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/Menu.h
+MiniDB.h
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/MiniDB.h
+list
+-
+fstream
+-
+
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/Menu.h
+string
+-
+vector
+-
+iterator
+-
+
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/MiniDB.h
+iostream
+-
+string
+-
+list
+-
+algorithm
+-
+iterator
+-
+
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/main.cpp
+LineManager.h
+/Users/Opel/Programming/Drive Programming/C++/A3_40014877/LineManager.h
+
