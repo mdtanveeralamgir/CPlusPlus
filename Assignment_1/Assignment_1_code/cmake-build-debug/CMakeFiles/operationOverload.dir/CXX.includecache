@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Opel/Programming/Drive Programming/C++/operationOverload/Menu.cpp
+Menu.h
+/Users/Opel/Programming/Drive Programming/C++/operationOverload/Menu.h
+iostream
+-
+cstring
+-
+cctype
+-
+
+/Users/Opel/Programming/Drive Programming/C++/operationOverload/Menu.h
+Text.h
+/Users/Opel/Programming/Drive Programming/C++/operationOverload/Text.h
+
+/Users/Opel/Programming/Drive Programming/C++/operationOverload/Text.h
+fstream
+-
+
